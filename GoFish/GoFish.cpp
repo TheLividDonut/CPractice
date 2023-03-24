@@ -3,14 +3,14 @@
 #include <vector>
 
 
-    const std::string SPADE = "\u2660";
-    const std::string DIAMOND = "\u2666";
-    const std::string CLUBS = "\u2663";
-    const std::string HEART = "\u2665";
+const std::string SPADE = "\u2660";
+const std::string DIAMOND = "\u2666";
+const std::string CLUBS = "\u2663";
+const std::string HEART = "\u2665";
    
     
-    int rank;
-    std::string suit;
+int rank; // this may cause problems if you use this value elsewhere; when you initialize an integer without a value and call on it it can cause undefined behavior, which means the compiler picks any place in memory it wants and spits it out as rank (this is bad)
+std::string suit;
 
 class Card {
 public:
@@ -81,14 +81,14 @@ class Deck {
     public:
         Deck() {
             for(int r = 1; r <= 13; r++) {
-            Card spade(r, SPADE);
-            Card heart(r, HEART);
-            Card club(r, CLUBS);
-            Card diamond(r, DIAMOND);
-            deck.push_back(spade);
-            deck.push_back(heart);
-            deck.push_back(club);
-            deck.push_back(diamond);
+                Card spade(r, SPADE);
+                Card heart(r, HEART);
+                Card club(r, CLUBS);
+                Card diamond(r, DIAMOND);
+                deck.push_back(spade);
+                deck.push_back(heart);
+                deck.push_back(club);
+                deck.push_back(diamond);
             }   
         }
 
