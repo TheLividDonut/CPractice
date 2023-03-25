@@ -15,9 +15,9 @@
 
 class Card {
 public:
-    Card(int rank, std::string suit) {
-        int rank = rank;
-        std::string suit = suit;
+    Card(int r, std::string s) {
+        rank = r;
+        suit = s;
     }
     
     int getRank() {
@@ -233,7 +233,7 @@ class GoFish {
             computerBooks = cB;
             deck = Deck();
         }
-        void roundCount() {
+        void roundIncrement() {
             roundCount++;
         }
         int getPlayerBookCount() {
@@ -251,7 +251,7 @@ class GoFish {
             if(start.compare("START")) {
                 std::cout << "\n";
                 while(playerBooks + computerBooks < 13) {
-                    
+
                 }
             }
 
@@ -259,5 +259,6 @@ class GoFish {
 };
 
 int main() {
-
+    GoFish game = GoFish(0, 0);
+    game.play();
 }
