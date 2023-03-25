@@ -42,15 +42,15 @@ void stringStream() {
 
 int main() {
     //Standard Output = cout
-    cout << "Output sentence";
-    cout << 120;
-    cout << x;
-    cout << "I am " << x << "years old";  //All on one line, << replaces +
+    //cout << "Output sentence";
+    //cout << 120;
+    //cout << x;
+    //cout << "I am " << x << "years old";  //All on one line, << replaces +
 
     //Standard Input = cin
     int age;
     cin >> age; //Arrows are flipped around
-    intInput;
-    stringInput;
-    stringStream;
+    //intInput;
+    stringInput();
+    //stringStream();
 }

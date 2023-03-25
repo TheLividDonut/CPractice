@@ -221,6 +221,42 @@ class Hand {
             return str;
         }
 };
+class GoFish {
+    int playerBooks;
+    int computerBooks;
+    int roundCount = 1;
+    Deck deck;
+    public:
+        GoFish(int pB, int cB) {
+            deck.shuffle();
+            playerBooks = pB;
+            computerBooks = cB;
+            deck = Deck();
+        }
+        void roundCount() {
+            roundCount++;
+        }
+        int getPlayerBookCount() {
+            return playerBooks;
+        }
+        int getComputerBookCount() {
+            return computerBooks;
+        }
+        void play() {
+            Hand humanHand = Hand(deck);
+            Hand computerHand = Hand(deck);
+            std::cout << "Welcome to GoFish! Enter START to begin \n";
+            std::string start;
+            std::getline(std::cin, start);
+            if(start.compare("START")) {
+                std::cout << "\n";
+                while(playerBooks + computerBooks < 13) {
+                    
+                }
+            }
+
+        }
+};
 
 int main() {
 
