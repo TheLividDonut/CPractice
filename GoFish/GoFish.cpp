@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
 
     const std::string SPADE = "\u2660";
@@ -127,6 +128,97 @@ class Deck {
                 }
             }
             discard.push_back(card);
+        }
+        bool hasCards() {
+            if(deck.size() > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        std::vector<Card> getDeck() {
+            return deck;
+        }
+};
+class Hand {
+    int bookCount;
+    std::vector<Card> hand;
+    Deck deck;
+    public:
+        Hand(Deck deck1) {
+            int count  = 0;
+            deck = deck1.getDeck();
+            while(count != 7) {
+                Card card = deck.drawCard();
+                hand.push_back(card);
+                count++;
+            }
+        }
+        void draw() {
+            Card card = deck.drawCard();
+            if(deck.hasCards()) {
+                hand.push_back(card);
+
+            }
+        }
+        Card getCard(int CI) {
+            Card getCard = hand[CI];
+            hand.erase(deck.getDeck().begin() + CI);
+        }
+        std::vector<Card> findCard(Card pickedCard) {
+            std::vector<Card> temp;
+            int wantedCard = pickedCard.getRank();
+            for(int i = 0; i < hand.size(); i++) {
+                Card currentCard = hand[i];
+                int currentCardRank = currentCard.getRank();
+                if(currentCardRank == wantedCard) {
+                    temp.push_back(currentCard);
+                    hand.erase(hand.begin() + i);
+                }
+            }
+            return temp;
+        }
+        bool addCard(std::vector<Card> temp) {
+            if(temp.empty()) {
+                std::cout << "Go Fish";
+                draw();
+                std::string str(hand.begin(), hand.end());
+                std::cout << str;
+                return false;
+            }
+            else {
+                for(int i  = 0; i < temp.size(); i++) {
+                    Card currentCard = temp[i];
+                    hand.push_back(currentCard);
+                }
+                std::string str(hand.begin(), hand.end());
+                std::cout << "New hand = " + str;
+                return true;
+            }
+        }
+        int getSize() {
+            return hand.size();
+        }
+        int getBookCount() {
+            return bookCount;
+        }
+        void removeCard(int r) {
+            Card firstCard = hand[0];
+            for(int i = 0; i < hand.size(); i++) {
+                Card currentCard = hand[i];
+                int currentCardRank = currentCard.getRank();
+                if(currentCardRank= rank) {
+                    hand.erase(hand.begin() + i);
+                }
+            }
+        }
+        std::string printHand() {
+            std::string str = "";
+            for(int i = 0; i < hand.size(); i++) {
+                str += hand[i].toString() + " ";
+            }
+            return str;
         }
 };
 
