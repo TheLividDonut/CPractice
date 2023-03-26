@@ -213,6 +213,19 @@ class Hand {
                 }
             }
         }
+        bool compareRanks(int r) {
+            int count = 0;
+            for(int i = hand.size() - 1; i >= 0; i--) {
+                Card card = hand[i];
+                if(card.getRank() == r) {
+                    count++;
+                }
+            }
+            if(count == 4) {
+                return true;
+            }
+            return false;
+        }
         std::string printHand() {
             std::string str = "";
             for(int i = 0; i < hand.size(); i++) {
@@ -251,10 +264,66 @@ class GoFish {
             if(start.compare("START")) {
                 std::cout << "\n";
                 while(playerBooks + computerBooks < 13) {
-
+                    std::cout << "Round # = " + roundCount + '\n';
+                    std::cout << "Human Hand = " + humanHand.printHand() + '\n';
+                    std::cout << "Enter index # of card \n";
+                    int cardIndex;
+                    std::cin >> cardIndex;
+                    std::cout << '\n';
+                    Card pickedCard = humanHand.getCard(cardIndex);
+                    std::cout << "Do you have any " + pickedCard.toString() + "'s? \n";
+                    std::vector<Card> humanTemp = computerHand.findCard(pickedCard);
+                    while(humanHand.addCard(humanTemp)) {
+                        std::cout << "Enter another card \n";
+                        int nextCard;
+                        std::cin >> nextCard;
+                        std::cout << '\n';
+                        Card nextPickedCard = humanHand.getCard(nextCard);
+                        std::cout << "Do you have any " + nextPickedCard.toString() + "'s? \n";
+                        if(humanHand.compareRanks(humanHand.getCard(nextCard).getRank())) {
+                            playerBooks++;
+                            std::cout << "Book added to player \n";
+                            humanHand.removeCard(humanHand.getCard(nextCard).getRank());
+                        }
+                        else {
+                            std::cout << "No books added to player \n";
+                        }
+                    }
+                    std::cout << "Confirm? \n";
+                    std::string confirm;
+                    std::getline(std::cin, confirm);
+                    std::cout << '\n';
+                    int compCardIndex = rand() * computerHand.getSize();
+                    Card compPickedCard = computerHand.getCard(compCardIndex);
+                    std::cout << "Does the human have any " + compPickedCard.toString() + "'s \n";
+                    std::vector<Card> compTemp = humanHand.findCard(compPickedCard);
+                    while(computerHand.addCard(compTemp)) {
+                        std::cout << "Computer enter another card \n";
+                        int nextCard = rand() * humanHand.getSize();
+                        Card nextPickedCard = computerHand.getCard(nextCard);
+                        std::cout << "Do you have any " + nextPickedCard.toString() + "'s? \n";
+                        if(computerHand.compareRanks(computerHand.getCard(nextCard).getRank())) {
+                            computerBooks++;
+                            std::cout << "Book added to computer \n";
+                            computerHand.removeCard(computerHand.getCard(nextCard).getRank());
+                        }
+                        else {
+                            std::cout << "No books added to computer \n";
+                        }
+                    }
+                    std::cout << "Confirm round? \n";
+                    std::string CR;
+                    std::getline(std::cin, CR);
+                    std::cout << '\n';
+                }
+                std::cout << "Game Over \n";
+                if(playerBooks > computerBooks) {
+                    std::cout << "Player wins";
+                }
+                else {
+                    std::cout << "Computer wins";
                 }
             }
-
         }
 };
 
