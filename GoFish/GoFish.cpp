@@ -112,10 +112,7 @@ class Deck {
         Card drawCard() {
             Card nextCard = deck[0];
             deck.erase(deck.begin());
-            if(deck.empty()) {
-                return;
-            }
-            else {
+            if(!deck.empty()) {
                 return nextCard;
             }
 
@@ -124,7 +121,7 @@ class Deck {
         void discardDeck(Card card) {
             for(int i = 0; i < deck.size();i++) {
                 if(deck[i].getRank() == card.getRank() && deck[i].getSuit().compare(card.getSuit())) {
-                    deck.erase(deck.begin());
+                    deck.erase(deck.begin() + i);
                 }
             }
             discard.push_back(card);
