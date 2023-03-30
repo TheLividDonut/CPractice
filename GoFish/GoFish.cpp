@@ -112,9 +112,7 @@ class Deck {
         Card drawCard() {
             Card nextCard = deck[0];
             deck.erase(deck.begin());
-            if(!deck.empty()) {
-                return nextCard;
-            }
+            return nextCard;
 
         }
 
@@ -160,8 +158,9 @@ class Hand {
             }
         }
         Card getCard(int CI) {
-            Card getCard = hand[CI];
+            Card card = hand[CI];
             hand.erase(deck.getDeck().begin() + CI);
+            return card;
         }
         std::vector<Card> findCard(Card pickedCard) {
             std::vector<Card> temp;
@@ -201,11 +200,10 @@ class Hand {
             return bookCount;
         }
         void removeCard(int r) {
-            Card firstCard = hand[0];
             for(int i = 0; i < hand.size(); i++) {
                 Card currentCard = hand[i];
                 int currentCardRank = currentCard.getRank();
-                if(currentCardRank= rank) {
+                if(currentCardRank = r) {
                     hand.erase(hand.begin() + i);
                 }
             }
