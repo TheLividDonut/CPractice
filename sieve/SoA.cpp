@@ -23,7 +23,7 @@ void initArray() {
     }
 } */
 void checkValue() {
-    for(long outer = 0; outer < 200; outer++) {
+    for(long outer = 2; outer < 200; outer++) {
         for(long i = outer + 1; i < 200; i++) {
             if(i % outer == 0) {
                 soa[i] = false;
