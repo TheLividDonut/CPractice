@@ -189,7 +189,7 @@ class Hand {
                     hand.push_back(currentCard);
                 }
                 std::string str(hand.begin(), hand.end());
-                std::cout << "New hand = " + str;
+                std::cout << "New hand = " << str;
                 return true;
             }
         }
@@ -259,14 +259,14 @@ class GoFish {
             if(start.compare("START")) {
                 std::cout << "\n";
                 while(playerBooks + computerBooks < 13) {
-                    std::cout << "Round # = " + roundCount + '\n';
-                    std::cout << "Human Hand = " + humanHand.printHand() + '\n';
+                    std::cout << "Round # = " << roundCount << '\n';
+                    std::cout << "Human Hand = " << humanHand.printHand() << '\n';
                     std::cout << "Enter index # of card \n";
                     int cardIndex;
                     std::cin >> cardIndex;
                     std::cout << '\n';
                     Card pickedCard = humanHand.getCard(cardIndex);
-                    std::cout << "Do you have any " + pickedCard.toString() + "'s? \n";
+                    std::cout << "Do you have any " << pickedCard.toString() << "'s? \n";
                     std::vector<Card> humanTemp = computerHand.findCard(pickedCard);
                     while(humanHand.addCard(humanTemp)) {
                         std::cout << "Enter another card \n";
@@ -274,7 +274,7 @@ class GoFish {
                         std::cin >> nextCard;
                         std::cout << '\n';
                         Card nextPickedCard = humanHand.getCard(nextCard);
-                        std::cout << "Do you have any " + nextPickedCard.toString() + "'s? \n";
+                        std::cout << "Do you have any " << nextPickedCard.toString() + "'s? \n";
                         if(humanHand.compareRanks(humanHand.getCard(nextCard).getRank())) {
                             playerBooks++;
                             std::cout << "Book added to player \n";
@@ -290,13 +290,13 @@ class GoFish {
                     std::cout << '\n';
                     int compCardIndex = rand() * computerHand.getSize();
                     Card compPickedCard = computerHand.getCard(compCardIndex);
-                    std::cout << "Does the human have any " + compPickedCard.toString() + "'s \n";
+                    std::cout << "Does the human have any " << compPickedCard.toString() << "'s \n";
                     std::vector<Card> compTemp = humanHand.findCard(compPickedCard);
                     while(computerHand.addCard(compTemp)) {
                         std::cout << "Computer enter another card \n";
                         int nextCard = rand() * humanHand.getSize();
                         Card nextPickedCard = computerHand.getCard(nextCard);
-                        std::cout << "Do you have any " + nextPickedCard.toString() + "'s? \n";
+                        std::cout << "Do you have any " << nextPickedCard.toString() << "'s? \n";
                         if(computerHand.compareRanks(computerHand.getCard(nextCard).getRank())) {
                             computerBooks++;
                             std::cout << "Book added to computer \n";
